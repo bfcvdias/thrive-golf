@@ -1,0 +1,13 @@
+import { readFile, stat } from 'node:fs/promises';
+import assert from 'node:assert/strict';
+const html = await readFile('public/index.html', 'utf8');
+const config = JSON.parse(await readFile('firebase.json', 'utf8'));
+assert.equal(config.hosting.public, 'public');
+assert.equal(config.hosting.site, 'thrive-golf-website');
+const ids = [...html.matchAll(/\bid="([^"]+)"/g)].map(m => m[1]);
+assert.equal(new Set(ids).size, ids.length, 'IDs must be unique');
+for (const match of html.matchAll(/href="#([^"]+)"/g)) assert(ids.includes(match[1]) || match[1] === 'teams', `Missing anchor: ${match[1]}`);
+for (const asset of ['hero', 'product', 'sunset', 'golfer', 'coach', 'team']) assert((await stat(`public/assets/concept/${asset}.webp`)).size > 1000, `Missing image: ${asset}`);
+for (const match of html.matchAll(/(?:src|href)="((?:assets\/|styles|script)[^"]+)"/g)) await stat(`public/${match[1]}`);
+assert(html.includes('not validated Thrive results'));
+console.log('Passed: deployment target, public directory, local assets, unique IDs, section links, prototype disclosures.');

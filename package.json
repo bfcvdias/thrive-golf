@@ -1,0 +1,11 @@
+{
+  "name": "thrive-golf",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Thrive Performance photographic website prototype",
+  "scripts": {
+    "dev": "node scripts/serve.mjs",
+    "check": "node scripts/check.mjs",
+    "deploy": "npx --yes firebase-tools@latest deploy --only hosting --project thrive-golf-website"
+  }
+}
