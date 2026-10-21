@@ -1,4 +1,26 @@
-# Verification — storyboard version 3
+# Verification
+
+## Store demonstration — version 3.1
+
+Checked 2026-10-21.
+
+- Existing twelve screens plus account, payment, and welcome: fifteen total.
+- Static/selection checks and the checkout-state tests passed. Account validation rejects incomplete details and excludes passwords from the account model.
+- The Golf summary continues into account creation. Personal Life still leads to the general inquiry form.
+- Browser-tested empty-account validation, sample-detail fill, account submission, decline, cancellation, retry, successful simulation, and direct welcome-route protection.
+- Changing capabilities invalidates the previous completed simulation. Refresh resets the account and payment, returning to account setup.
+- All three welcome actions open their respective future-feature dialogs. Escape closes the dialog. The welcome-email preview uses the selected program and sample identity without sending anything.
+- Desktop and actual 390 / 320 CSS-pixel viewport checks passed for the three added screens with no horizontal overflow. Mobile form, payment, and welcome layouts reviewed.
+- No browser warnings/errors observed during these checks. General Contact remains the existing email-draft fallback.
+- This validates the presentation simulation only. Real authentication, Stripe, welcome-email delivery, dashboard, booking, and training are not implemented or tested.
+
+- Hosted preview: https://thrive-golf-website--checkout-demo-yymd3p9p.web.app
+- Checked Hosting version: `e6e703ba255dd21e`, cloned to the live channel on 2026-10-21.
+- Live account → payment → welcome flow verified at https://thrive-golf-website.web.app/?v=3.1.0#/demo/checkout with all fifteen screens present and no browser warnings/errors.
+- Versioned stylesheet/module URLs and no-cache HTML/script/style headers prevent older cached code from mixing with this release.
+- Live welcome screenshot saved locally under `artifacts/thrive-checkout-welcome-live.png`.
+
+## Original storyboard — version 3
 
 Checked 2026-10-21.
 
