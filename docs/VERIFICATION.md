@@ -1,20 +1,33 @@
-# Verification
+# Verification — storyboard version 3
 
-## Passed
+Checked 2026-10-21.
 
-- `npm run check`: correct Firebase project/site and `public/` directory, local asset existence, unique HTML IDs, section anchor destinations, and explicit prototype disclosure.
-- JavaScript syntax checks for `public/content.js` and `public/script.js`.
-- Browser rendering inspected on desktop and phone. Corrected product image proportions and mobile heading line breaks after inspection.
-- Responsive checks at 320, 390, 768, and 1280 CSS pixels: no horizontal page overflow and no failed loaded images.
-- Mobile menu opens, updates `aria-expanded`, closes after selecting Programs, and navigates to the section.
-- Session walkthrough opens as a named native modal, displays three steps, and closes with Escape.
-- No browser warning or error logs observed during these checks.
-- Booking CTA retains the original email destination. No email was sent.
+## Local checks
+
+- `npm run check`: twelve screens, unique IDs, existing assets, correct Hosting target, sanitized selections, multi-selection, exclusive undecided choice, summary mapping, inquiry context, and explicit email-draft behavior.
+- All twelve desktop screens visually reviewed in Chromium. Mobile home, training-priority cards, training choices, program summary, and request form reviewed.
+- All twelve routes checked at actual 390 and 320 CSS-pixel viewport widths: no horizontal overflow or failed loaded images.
+- Empty priorities and training steps show useful validation.
+- "I'm not sure" clears specific priorities; choosing a specific priority clears "I'm not sure".
+- Focus, Calm, Reset & Recovery plus Pro carry into the summary and survive reload.
+- Request form prepares the chosen goal, priorities, and level in an encoded email draft. No email was sent; the interface explicitly says no request has been sent.
+- No browser warning/error logs observed in the checked flow.
+- Form labels, focus styles, heading focus, reduced-motion support, and a skip link are present.
+
+## Release
+
+Firebase authentication and access to Hosting site `thrive-golf-website` were verified. The previous live page was the earlier Train Your Mind / Own Your Game design.
+
+- Preview: https://thrive-golf-website--storyboard-v3-f5o6jz4w.web.app
+- Preview version: `c264fe69af0ae163`, expires 2026-10-28.
+- Hosted preview passed module loading, empty-state route guards, and the Personal Life → Calm → Independent summary flow.
+- The checked preview was cloned to the live channel on 2026-10-21.
+- Live: https://thrive-golf-website.web.app — new home, navigation, photography, and loaded JavaScript verified in the browser with no warning/error logs.
 
 ## Limitations
 
-- The approved screenshot itself was absent from the conversation export, so pixel matching is not claimed.
-- Firebase account discovery returned no authorized accounts. Deployment is ready but not performed; see README for the exact command.
-- Images, portraits, metrics, endorsements, partner logos, hardware details, video, and commercial booking workflow still need approved production replacements.
-- Checked in the available Chromium browser; not a Safari/Firefox or real-device certification.
-- Google Fonts need a network connection; system fallbacks are specified.
+- Recreated photographs are not original source images.
+- Chromium desktop and simulated mobile checks do not certify other browsers or physical phones.
+- Registration storage, Bookings, Infobip, notifications, and payments are not connected. The request form uses an email draft.
+- Mailbox deliverability is unverified.
+- Sports Performance and Level 3 remain placeholders. Training descriptions are concept copy, not independently validated outcomes.

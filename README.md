@@ -1,51 +1,64 @@
-# Thrive Performance Golf
+# Thrive Performance Mind Training
 
-A responsive photographic black/white/neon-green website prototype, with golfer hero, cap/tablet product visual, five mental-state icons, four metric cards, session walkthrough, sample testimonials, audience cards, partner placeholders, and sunset CTA.
+A responsive twelve-screen website based on the supplied `golf websiite.png` storyboard. Navy and white styling, copy, five capability icons, photographic compositions, and the guided program builder follow that reference.
 
-## Preview and check
+## Run locally
 
-Requires Node.js 18+. No dependencies or build needed.
+Node.js 18 or newer. No install or build required.
 
 ```sh
 npm run dev
-# Open http://127.0.0.1:4173
+# http://127.0.0.1:4175
 npm run check
 ```
 
-## Deploy to the existing Firebase site
+## Visitor flow
 
-From this repository directory, using an account authorized for `thrive-golf-website`:
+Home → Golf recognition → The Unfair Advantage → What you'll learn → How it works → Priorities → Independent or Pro → Program summary → Request information.
+
+About explains the five capabilities. Personal Life opens the same builder with its own goal and summary photo. Sports Performance and Level 3 remain unavailable, as pictured. Hash routes support refresh and browser Back on static Hosting.
+
+The builder supports multiple priorities, an exclusive "I'm not sure" choice, editing, and tab-local selection persistence. Contact details are not stored in browser storage.
+
+## Request form
+
+The form prepares an email to the existing `info@thrive-golf.com` destination. It does **not** automatically submit a registration or claim the request was sent. The visitor reviews and sends the draft using their email app, or copies the request. Email deliverability is unverified.
+
+Microsoft Bookings, Infobip, CRM registration storage, payments, and automated confirmations are not connected. Add an approved backend and consent wording before enabling automatic registration or messaging. Keep credentials server-side.
+
+## Deployment
+
+Firebase publishes only `public/` to the existing `thrive-golf-website` Hosting site. This configuration does not provision or deploy backend services.
 
 ```sh
-git pull origin main
-npx --yes firebase-tools@latest login
+git pull --ff-only origin main
+npm run check
 npx --yes firebase-tools@latest deploy --only hosting --project thrive-golf-website
 ```
 
-If already authenticated, skip login. In Cloud Shell, use `login --no-localhost` if needed. `npm run deploy` runs the deploy command. Existing site: https://thrive-golf-website.web.app.
+Preview and promote the checked version:
 
-Firebase publishes **only `public/`**, explicitly targeting `thrive-golf-website`. Documentation and configuration remain outside the public site. No backend or new Firebase project is required.
+```sh
+npx --yes firebase-tools@latest hosting:channel:deploy storyboard-v3 --expires 7d --project thrive-golf-website
+npx --yes firebase-tools@latest hosting:clone thrive-golf-website:storyboard-v3 thrive-golf-website:live --project thrive-golf-website
+```
 
-This rebuild was **not deployed** from the development machine: `firebase login:list --non-interactive` returned no authorized accounts. A GitHub commit alone does not update Firebase.
+Use an account authorized for this project. See `docs/VERIFICATION.md` for recorded release status. Live URL: https://thrive-golf-website.web.app.
 
-## Files
+## Source guide
 
-- `public/index.html`: page sections, metric placeholders, partner strip, booking destination.
-- `public/styles.css`: responsive visual system, typography, image framing.
-- `public/content.js`: replaceable sample testimonials and audience content.
-- `public/script.js`: card rendering, mobile menu, native dialog.
-- `public/assets/concept/`: six generated prototype photographs as WebP.
-- `docs/ASSETS.md`: asset provenance, prompts, replacement guide.
-- `docs/VERIFICATION.md`: verification and limitations.
+- `public/index.html`: twelve screens and storyboard wording.
+- `public/styles.css`: styling, image framing, desktop and mobile layouts.
+- `public/script.js`: routing, forms, selection persistence, email draft.
+- `public/state.mjs`: validated selections and inquiry formatting.
+- `public/config.js`: public contact address; never put secrets here.
+- `public/assets/reference/`: six generated storyboard photographs.
+- `public/assets/concept/`: earlier concept photos; sunset and coach reused.
+- `docs/ASSETS.md`: prompts, provenance, replacement guide.
+- `docs/VERIFICATION.md`: checks and limitations.
 
-The root `index.html` redirects to `public/` for repository previews. Firebase serves `public/index.html` directly.
+Root `index.html` redirects to `public/` for repository previews. All photographs are locally hosted; fonts use the system.
 
-## Prototype boundaries
+## Design boundaries
 
-- The original approved screenshot attachment was unavailable in the referenced conversation export. This rebuild follows the detailed design description; exact matching remains unverified.
-- Photography, hardware, dashboard, and brand mark are conceptual; people are fictional models.
-- Numerical metrics are explicitly illustrative, not validated claims.
-- Quotes are labeled sample stories, not customer endorsements. Partner categories do not imply actual affiliations.
-- The video callout opens a three-step walkthrough and says the video is coming soon.
-- Booking preserves the original repository's `info@thrive-golf.com` email destination; deliverability is unverified. Replace with an approved scheduler before commercial launch. CRM/SMS is not implemented.
-- Barlow and Barlow Condensed load from Google Fonts with system fallbacks. All photographs are locally hosted.
+The reference is a flattened storyboard, not an editable design file. Photography was recreated at web resolution; exact original pixels and font identity are not claimed. Mobile layouts adapt the reference into readable stacks. No invented testimonials, endorsements, prices, or numerical performance claims were added. Training descriptions still need business validation before commercial launch. Generated people are fictional, and photos remain separate for approved replacements.

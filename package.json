@@ -1,8 +1,8 @@
 {
   "name": "thrive-golf",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "private": true,
-  "description": "Thrive Performance photographic website prototype",
+  "description": "Thrive Performance twelve-screen website and guided program builder",
   "scripts": {
     "dev": "node scripts/serve.mjs",
     "check": "node scripts/check.mjs",
