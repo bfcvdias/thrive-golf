@@ -9,13 +9,19 @@ Generated PNGs were encoded as WebP at their original 1536 × 1024 dimensions. T
 | hero-video-finish.webp | Home, golf learning, golf program summary, payment, welcome |
 | sports.webp | Sports entry and path card |
 | life.webp | Personal Life, Calm choice, personal program summary |
-| recognition.webp | Golf recognition |
+| recognition-putter.webp | Golf recognition |
 | ball.webp | Unfair Advantage, golf path and stress choice |
 | mountains.webp | About, Reset & Recovery, unavailable Level 3 |
 
 Previous `assets/concept/sunset.webp` and `coach.webp` are reused for How it works and training choices. Other earlier concept assets remain available but are not referenced by this interface.
 
 ## Exact generation prompts
+
+### Approved crouching golfer replacement — 2026-10-22
+
+`recognition-putter.webp` replaces the short putter and awkward hand position in `recognition.webp`. The user approved the revised preview: a natural crouch, one hand on top of a full-length upright putter and the other on the knee. The supplied real golfer photograph was used only for posture and club proportions; the existing conceptual image supplied the fictional golfer's appearance, navy outfit, pale right-side background, and composition. This remains conceptual prototype artwork.
+
+The approved 1536 × 1024 PNG was encoded as WebP at quality 90. The distinct filename avoids cached old imagery. Source reference and rejected previews remain outside the published directory. The old asset is retained for historical comparison but is no longer referenced by the interface. Exact prompt: [RECOGNITION-PROMPT.md](RECOGNITION-PROMPT.md).
 
 ### Approved golf finish replacement — 2026-10-22
 

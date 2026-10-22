@@ -1,6 +1,6 @@
 {
   "name": "thrive-golf",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "private": true,
   "description": "Thrive Performance website with guided program selection and simulated account checkout",
   "scripts": {

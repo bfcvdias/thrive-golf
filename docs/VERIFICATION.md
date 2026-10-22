@@ -1,5 +1,16 @@
 # Verification
 
+## Approved crouching golfer replacement — version 3.1.2
+
+Checked 2026-10-22.
+
+- Replaced the recognition-page photo with the user-approved `recognition-putter.webp` (1536 × 1024, WebP quality 90), showing a natural crouch and full-length putter.
+- New asset name prevents use of the cached defective image. Advanced the stylesheet URL to 3.1.2 for the crop adjustment.
+- Shifted the mobile image crop to the left so the raised hand and putter grip remain visible.
+- Existing site/checkout checks passed. Hosted desktop and 390-pixel mobile layouts reviewed, with no horizontal overflow or browser warnings/errors observed.
+- Preview: https://thrive-golf-website--recognition-fix-ak9hmy0b.web.app — final Hosting version `35fb2c8672600f56`.
+- Cloned that checked preview to live. Confirmed the live golf page loads the new image and stylesheet.
+
 ## Approved golf image replacement — version 3.1.1
 
 Checked 2026-10-22.
