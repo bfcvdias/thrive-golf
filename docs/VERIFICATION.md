@@ -1,5 +1,17 @@
 # Verification
 
+## Approved golf image replacement — version 3.1.1
+
+Checked 2026-10-22.
+
+- Installed the user-approved video-based finish image as `assets/reference/hero-video-finish.webp` (1536 × 1024, WebP quality 90).
+- Updated the preload, home, golf learning, program summary (including its dynamic image choice), payment, and welcome references. No interface references to the defective `hero.webp` remain.
+- Versioned module/style URLs were advanced to 3.1.1 so previously cached scripts cannot reselect the old photo.
+- Existing `npm run check` passed. All five hero images loaded in the hosted preview; desktop and 390-pixel mobile homepage layouts were visually checked, with no horizontal overflow.
+- Preview: https://thrive-golf-website--grip-fix-qzpvm0ya.web.app — Hosting version `0a235b2ad5c69230`.
+- That exact preview was cloned to live. The live homepage loaded the new image and script version, with no browser warnings/errors observed.
+- Source video, reference frames, rejected previews, and tools remain outside the published directory. The checkout remains a presentation-only demonstration.
+
 ## Store demonstration — version 3.1
 
 Checked 2026-10-21.

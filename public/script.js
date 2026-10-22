@@ -1,6 +1,6 @@
-import { cleanState, togglePriority, summary, requestBody, priorities } from './state.mjs?v=3.1.0';
-import { emptyDemo, createDemoAccount, simulatePayment, resolveCheckoutRoute } from './checkout.mjs?v=3.1.0';
-import { siteConfig } from './config.js?v=3.1.0';
+import { cleanState, togglePriority, summary, requestBody, priorities } from './state.mjs?v=3.1.1';
+import { emptyDemo, createDemoAccount, simulatePayment, resolveCheckoutRoute } from './checkout.mjs?v=3.1.1';
+import { siteConfig } from './config.js?v=3.1.1';
 const routeTable = { '/': 'home', '/about': 'about', '/sports': 'sports', '/personal': 'personal', '/golf': 'golf', '/golf/advantage': 'advantage', '/golf/learn': 'learn', '/golf/how': 'how', '/build/priorities': 'priorities', '/build/training': 'training', '/build/program': 'program', '/request': 'request', '/store/account': 'account', '/store/payment': 'payment', '/store/welcome': 'welcome', '/demo/checkout': 'account' };
 const previousRoute = { priorities: '/', training: '/build/priorities', program: '/build/training', request: '/', account: '/build/program', payment: '/store/account' };
 const darkHeaders = new Set(['home', 'sports', 'welcome']);
@@ -25,7 +25,7 @@ function refreshSummary() {
   $('#summary-training').textContent = current.training || 'To discuss';
   $('#program-action').href = state.goal === 'golf' ? '#/store/account' : '#/request';
   $('#program-action-label').textContent = state.goal === 'golf' ? 'START YOUR UNFAIR ADVANTAGE' : 'REQUEST INFORMATION';
-  $('#program-photo').src = state.goal === 'personal' ? 'assets/reference/life.webp' : state.goal === 'sports' ? 'assets/reference/sports.webp' : 'assets/reference/hero.webp';
+  $('#program-photo').src = state.goal === 'personal' ? 'assets/reference/life.webp' : state.goal === 'sports' ? 'assets/reference/sports.webp' : 'assets/reference/hero-video-finish.webp';
   $('#request-selection').textContent = state.priorities.length ? `Your selection: ${current.priorities}${current.training ? ` · ${current.training}` : ''}` : '';
 }
 function renderRoute(focus = true) {

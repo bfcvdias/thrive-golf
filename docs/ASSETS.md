@@ -6,7 +6,7 @@ Generated PNGs were encoded as WebP at their original 1536 × 1024 dimensions. T
 
 | File under public/assets/reference/ | Placement |
 | --- | --- |
-| hero.webp | Home, golf learning, golf program summary |
+| hero-video-finish.webp | Home, golf learning, golf program summary, payment, welcome |
 | sports.webp | Sports entry and path card |
 | life.webp | Personal Life, Calm choice, personal program summary |
 | recognition.webp | Golf recognition |
@@ -16,6 +16,12 @@ Generated PNGs were encoded as WebP at their original 1536 × 1024 dimensions. T
 Previous `assets/concept/sunset.webp` and `coach.webp` are reused for How it works and training choices. Other earlier concept assets remain available but are not referenced by this interface.
 
 ## Exact generation prompts
+
+### Approved golf finish replacement — 2026-10-22
+
+`hero-video-finish.webp` replaces the defective grip in the original `hero.webp`. The user approved the new full-body sunset preview after supplying a golf-swing video. The pose follows the finish at 00:37: joined hands above the left shoulder and one straight club extending to the right. The built-in image editor used that video frame for the pose and the original hero only for scenery, clothing palette, and composition. The image remains conceptual artwork, approved for this prototype rather than official Thrive product photography.
+
+The approved 1536 × 1024 PNG was encoded as WebP at quality 90. The new filename prevents stale image caching. Original video, extracted reference frames, and rejected previews are kept out of the published assets. The original `hero.webp` is retained for historical comparison but no longer referenced by the interface. Exact replacement prompt: [HERO-FINISH-PROMPT.md](HERO-FINISH-PROMPT.md).
 
 ### hero
 

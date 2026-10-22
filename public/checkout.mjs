@@ -1,4 +1,4 @@
-import { cleanState } from './state.mjs?v=3.1.0';
+import { cleanState } from './state.mjs?v=3.1.1';
 
 // This module is a local demonstration, never an authentication/payment authority.
 // No customer details or payment status are persisted or transmitted.
