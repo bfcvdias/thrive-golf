@@ -24,7 +24,7 @@ The builder supports multiple priorities, an exclusive "I'm not sure" choice, ed
 
 ## Try the account and checkout demo
 
-Open https://thrive-golf-website.web.app/?v=3.1.0#/demo/checkout. This shortcut selects a sample Golf / Focus, Calm, Reset & Recovery / Pro program.
+Open https://thrive-golf-website.web.app/?v=3.2.0#/demo/checkout. This shortcut selects a sample Golf / Focus, Calm, Reset & Recovery / Pro program.
 
 1. Click **Fill demo details**, then check the demonstration notice.
 2. Click **Create demo account**.
@@ -49,7 +49,7 @@ npm run check
 npx --yes firebase-tools@latest deploy --only hosting --project thrive-golf-website
 ```
 
-Personal Life 3.2.0 is a review preview pending visual approval: https://thrive-golf-website--personal-life-jdzp8dvy.web.app/?v=3.2.0#/personal (current expiry October 31, 2026). See `docs/PERSONAL-LIFE.md` for the flow and integration boundary.
+Personal Life 3.2.0 was approved and published on October 24, 2026. Live: https://thrive-golf-website.web.app/?v=3.2.0#/personal. Retained review preview: https://thrive-golf-website--personal-life-jdzp8dvy.web.app/?v=3.2.0#/personal (current expiry October 31, 2026). See `docs/PERSONAL-LIFE.md` for the flow and integration boundary.
 
 Refresh the preview:
 
@@ -57,7 +57,7 @@ Refresh the preview:
 npx --yes firebase-tools@latest hosting:channel:deploy personal-life --expires 7d --project thrive-golf-website
 ```
 
-After user approval, promote the reviewed preview with `npx --yes firebase-tools@latest hosting:clone thrive-golf-website:personal-life thrive-golf-website:live --project thrive-golf-website`. Do not promote before approval. Use an authorized project account. See `docs/VERIFICATION.md` for release status. Live URL: https://thrive-golf-website.web.app.
+For future approved releases, promote the reviewed preview with `npx --yes firebase-tools@latest hosting:clone thrive-golf-website:personal-life thrive-golf-website:live --project thrive-golf-website`. Do not promote before approval. Use an authorized project account. See `docs/VERIFICATION.md` for release status. Live URL: https://thrive-golf-website.web.app.
 
 ## Source guide
 

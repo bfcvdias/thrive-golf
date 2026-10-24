@@ -1,8 +1,8 @@
 # Verification
 
-## Personal Life Advantage — version 3.2.0 preview
+## Personal Life Advantage — version 3.2.0
 
-Checked October 23–24, 2026. Preview: https://thrive-golf-website--personal-life-jdzp8dvy.web.app/?v=3.2.0#/personal. Final Hosting version `12719cbc65ffef07`; not promoted to live.
+Checked October 23–24, 2026. Preview: https://thrive-golf-website--personal-life-jdzp8dvy.web.app/?v=3.2.0#/personal. Approved Hosting version `12719cbc65ffef07` was promoted to live on October 24, 2026 at 17:45 UTC after user approval. Both channel records confirm the same version. PR #1 merged to main. Live entry, recognition, benefits, chooser, Everyday Life / Calm / Independent summary, demo account, payment simulation, and welcome passed with no browser warnings/errors. Live screenshot: `artifacts/personal-preview/personal-live.png`.
 
 - Added seven screens: recognition, benefits, path choice, and four audience pages. Reused priorities, training, summary, account, payment, and welcome with Personal Life context.
 - `npm run check` passed: 22 screens, assets, route links, sanitized state, all four Personal paths at both levels, distinct offer keys, payment gates, decline/cancel/retry, and invalidation after path/goal/priority/level changes.

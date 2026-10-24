@@ -1,10 +1,10 @@
-# Personal Life Advantage preview
+# Personal Life Advantage
 
 Version 3.2.0 follows the supplied twelve-panel Personal Life storyboard. The request-information step is replaced by the account → payment → welcome demonstration requested by the user.
 
 ## Review
 
-Open https://thrive-golf-website--personal-life-jdzp8dvy.web.app/?v=3.2.0#/personal.
+Open https://thrive-golf-website.web.app/?v=3.2.0#/personal.
 
 1. Explore Personal Life Advantage, review recognition and benefits, then choose a path.
 2. Choose Professionals & Executives, Frequent Travelers, Students, or Everyday Life. Select **Build your program**.
@@ -27,4 +27,4 @@ After pricing and the business account are approved, create corresponding Stripe
 
 ## Release status
 
-Preview only. User visual approval is required before merging/publishing to the existing live site. Preview Hosting version: `12719cbc65ffef07`, deployed October 24, 2026. The existing live release is not replaced by this preview.
+Approved by the user and published October 24, 2026. PR #1 was merged to main. The exact approved preview Hosting version `12719cbc65ffef07` was cloned to live and confirmed in both channels. The live Everyday Life / Calm / Independent journey passed from entry through account, payment simulation, and welcome with no browser warnings or errors.
