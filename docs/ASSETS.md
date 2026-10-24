@@ -1,5 +1,15 @@
 # Storyboard imagery
 
+## Personal Life Advantage — 3.2.0 preview
+
+Nine generated photographs are isolated in `public/assets/personal/`: `recognition`, `advantage`, `professionals`, `travelers`, `students`, `everyday`, `coaching`, `independent`, and `flight` (all WebP). These are fictional prototype people/settings, not approved customer or staff photography. The existing Personal Life entry image remains in `assets/reference/life.webp`.
+
+Exact prompts: [PERSONAL-IMAGES.md](PERSONAL-IMAGES.md) and [PERSONAL-IMAGES-EXTRA.md](PERSONAL-IMAGES-EXTRA.md). Generated with the built-in image tool; WebP quality 88. Eight images are 1536 × 1024; the flight card is 1774 × 887.
+
+Replace page/card references in `public/index.html`, priority tile backgrounds in `public/personal.css`, summary images in `public/programs.mjs`, and training/welcome images in `public/script.js`. Preserve the subject opposite the copy and review desktop/mobile crops. User-supplied screenshots remain outside the published directory.
+
+## Original Golf storyboard
+
 Reference: user-supplied `golf websiite.png`, a 1536 × 1024 twelve-screen composite. The built-in image-generation tool recreated six background photographs using this visual reference. These conceptual photos contain fictional people and are not approved Thrive photography.
 
 Generated PNGs were encoded as WebP at their original 1536 × 1024 dimensions. The six new WebP files total approximately 705 KiB. HTML/CSS provides all text, icons, and controls; no screenshot is used as a non-interactive page.

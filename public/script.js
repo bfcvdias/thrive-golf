@@ -1,7 +1,8 @@
-import { cleanState, togglePriority, summary, requestBody, priorities } from './state.mjs?v=3.1.1';
-import { emptyDemo, createDemoAccount, simulatePayment, resolveCheckoutRoute } from './checkout.mjs?v=3.1.1';
-import { siteConfig } from './config.js?v=3.1.1';
-const routeTable = { '/': 'home', '/about': 'about', '/sports': 'sports', '/personal': 'personal', '/golf': 'golf', '/golf/advantage': 'advantage', '/golf/learn': 'learn', '/golf/how': 'how', '/build/priorities': 'priorities', '/build/training': 'training', '/build/program': 'program', '/request': 'request', '/store/account': 'account', '/store/payment': 'payment', '/store/welcome': 'welcome', '/demo/checkout': 'account' };
+import { programOffer, personalPhotos } from './programs.mjs?v=3.2.0';
+import { cleanState, togglePriority, summary, requestBody, priorities } from './state.mjs?v=3.2.0';
+import { emptyDemo, createDemoAccount, simulatePayment, resolveCheckoutRoute } from './checkout.mjs?v=3.2.0';
+import { siteConfig } from './config.js?v=3.2.0';
+const routeTable = { '/': 'home', '/about': 'about', '/sports': 'sports', '/personal': 'personal', '/personal/recognition': 'personal-recognition', '/personal/advantage': 'personal-advantage', '/personal/paths': 'personal-paths', '/personal/professionals': 'personal-professionals', '/personal/travelers': 'personal-travelers', '/personal/students': 'personal-students', '/personal/everyday': 'personal-everyday', '/golf': 'golf', '/golf/advantage': 'advantage', '/golf/learn': 'learn', '/golf/how': 'how', '/build/priorities': 'priorities', '/build/training': 'training', '/build/program': 'program', '/request': 'request', '/store/account': 'account', '/store/payment': 'payment', '/store/welcome': 'welcome', '/demo/checkout': 'account' };
 const previousRoute = { priorities: '/', training: '/build/priorities', program: '/build/training', request: '/', account: '/build/program', payment: '/store/account' };
 const darkHeaders = new Set(['home', 'sports', 'welcome']);
 const builderScreens = new Set(['priorities', 'training', 'program', 'request', 'account', 'payment']);
@@ -20,22 +21,48 @@ function syncControls() {
 }
 function refreshSummary() {
   const current = summary(state);
-  $('#summary-goal').textContent = current.goal;
+  const personal = state.goal === 'personal';
+  $('#summary-goal-label').textContent = personal ? 'Your Path:' : 'Your Goal:';
+  $('#summary-goal').textContent = personal ? current.path : current.goal;
+  $('#change-personal-path').hidden = !personal;
+  document.querySelectorAll('[data-program-context]').forEach(node => { node.hidden = !personal; node.textContent = current.goal + ' · ' + current.path; });
   $('#summary-priorities').textContent = current.priorities || 'To discuss';
   $('#summary-training').textContent = current.training || 'To discuss';
-  $('#program-action').href = state.goal === 'golf' ? '#/store/account' : '#/request';
-  $('#program-action-label').textContent = state.goal === 'golf' ? 'START YOUR UNFAIR ADVANTAGE' : 'REQUEST INFORMATION';
-  $('#program-photo').src = state.goal === 'personal' ? 'assets/reference/life.webp' : state.goal === 'sports' ? 'assets/reference/sports.webp' : 'assets/reference/hero-video-finish.webp';
+  $('#program-action').href = programOffer(state) ? '#/store/account' : '#/request';
+  $('#program-action-label').textContent = state.goal === 'golf' ? 'START YOUR UNFAIR ADVANTAGE' : personal ? 'START YOUR PERSONAL LIFE ADVANTAGE' : 'REQUEST INFORMATION';
+  const photo = selectedPhoto();
+  setPhoto($('#program-photo'), photo);
+  setPhoto($('#independent-photo'), personal ? {src:'assets/personal/independent.webp',position:'center',alt:'Independent practice with a laptop at home'} : {src:'assets/concept/sunset.webp',position:'center',alt:'Golfer practicing independently on a course'});
+  setPhoto($('#coaching-photo'), personal ? {src:'assets/personal/coaching.webp',position:'center',alt:'Personal performance coaching conversation'} : {src:'assets/concept/coach.webp',position:'center',alt:'Golfer working with a coach'});
   $('#request-selection').textContent = state.priorities.length ? `Your selection: ${current.priorities}${current.training ? ` · ${current.training}` : ''}` : '';
+}
+function setPhoto(node, photo) {
+  node.src = photo.src; node.alt = photo.alt; node.style.objectPosition = photo.position;
+}
+function selectedPhoto() {
+  if (state.goal === 'personal') return personalPhotos[state.path] || {src:'assets/personal/advantage.webp',position:'80% center',alt:'Woman looking across a peaceful lake'};
+  return {src:state.goal === 'sports' ? 'assets/reference/sports.webp' : 'assets/reference/hero-video-finish.webp',position:'76% center',alt:state.goal === 'sports' ? 'Sprinter on a track' : 'Golfer completing a swing at sunset'};
+}
+function selectPersonalPath(path) {
+  const next = cleanState({...state,goal:'personal',path});
+  if (state.goal !== next.goal || state.path !== next.path) invalidateDemoPayment();
+  state = next; saveState();
 }
 function renderRoute(focus = true) {
   let route = location.hash.slice(1) || '/';
   if (route === '/demo/checkout') {
-    state = { goal: 'golf', priorities: ['focus', 'calm', 'reset'], training: 'pro' };
+    state = cleanState({ goal: 'golf', priorities: ['focus', 'calm', 'reset'], training: 'pro' });
     saveState(); resetDemo(); route = '/store/account';
     history.replaceState(null, '', '#' + route);
   }
   if (!Object.hasOwn(routeTable, route)) { history.replaceState(null, '', '#/'); route = '/'; }
+  if (route === '/personal' || route.startsWith('/personal/')) {
+    const path = route.split('/')[2];
+    selectPersonalPath(Object.hasOwn(personalPhotos, path) ? path : state.path);
+  }
+  if (route.startsWith('/build/') && state.goal === 'personal' && !state.path) {
+    route = '/personal/paths'; history.replaceState(null, '', '#' + route);
+  }
   if (route === '/build/training' && !state.priorities.length) { history.replaceState(null, '', '#/build/priorities'); route = '/build/priorities'; }
   if (route === '/build/program' && (!state.priorities.length || !state.training)) { route = !state.priorities.length ? '/build/priorities' : '/build/training'; history.replaceState(null, '', `#${route}`); }
   const guardedRoute = resolveCheckoutRoute(route, state, demo);
@@ -46,9 +73,10 @@ function renderRoute(focus = true) {
   document.querySelectorAll('[data-screen]').forEach(section => { section.hidden = section.dataset.screen !== current; });
   $('#site-header').classList.toggle('light-header', darkHeaders.has(current));
   document.body.classList.toggle('builder-mode', builderScreens.has(current));
+  document.body.classList.toggle('personal-program', state.goal === 'personal');
   $('.main-nav').hidden = builderScreens.has(current);
   $('#back-link').hidden = !builderScreens.has(current);
-  $('#back-link').href = '#' + (current === 'request' ? requestOrigin : current === 'priorities' && state.goal === 'personal' ? '/personal' : previousRoute[current] || '/');
+  $('#back-link').href = '#' + (current === 'request' ? requestOrigin : current === 'priorities' && state.goal === 'personal' ? '/personal/' + (state.path || 'paths') : previousRoute[current] || '/');
   document.querySelectorAll('[data-nav]').forEach(link => { if (link.dataset.nav === current) link.setAttribute('aria-current', 'page'); else link.removeAttribute('aria-current'); });
   syncControls(); refreshSummary(); refreshCheckout();
   if (current === 'request' && lastScreen !== 'request') { $('#request-form').elements.interest.value = state.goal; $('#request-ready').hidden = true; }
@@ -59,7 +87,9 @@ function renderRoute(focus = true) {
   lastScreen = current;
 }
 $('.skip-link').addEventListener('click', event => { event.preventDefault(); document.querySelector('[data-screen]:not([hidden]) h1').focus(); });
-document.querySelectorAll('[data-goal]').forEach(link => link.addEventListener('click', () => { if (state.goal !== link.dataset.goal) invalidateDemoPayment(); state.goal = link.dataset.goal; saveState(); }));
+document.querySelectorAll('[data-goal]').forEach(link => link.addEventListener('click', () => { if (state.goal !== link.dataset.goal) invalidateDemoPayment(); state = cleanState({...state,goal:link.dataset.goal}); saveState(); }));
+document.querySelectorAll('[data-personal-path]').forEach(link => link.addEventListener('click', () => selectPersonalPath(link.dataset.personalPath)));
+
 document.querySelectorAll('input[name="priority"]').forEach(input => input.addEventListener('change', () => { state = togglePriority(state, input.value, input.checked); invalidateDemoPayment(); saveState(); syncControls(); $('#priority-error').textContent = ''; }));
 $('#priorities-form').addEventListener('submit', event => {
   event.preventDefault();
@@ -103,6 +133,16 @@ function resetDemo() {
 }
 function refreshCheckout() {
   const current = summary(state);
+  const offer = programOffer(state);
+  const personal = state.goal === 'personal';
+  setPhoto($('#checkout-photo'), selectedPhoto());
+  setPhoto($('#welcome-photo'), personal ? {src:'assets/personal/advantage.webp',position:'80% center',alt:'Woman looking over a lake at sunset'} : {src:'assets/reference/hero-video-finish.webp',position:'',alt:'Golfer following through at sunset'});
+  $('#checkout-path').hidden = !personal;
+  $('#checkout-path').textContent = 'Path: ' + current.path;
+  $('#program-price').textContent = offer?.priceLabel || 'To be confirmed';
+  $('#payment-program-note').textContent = personal ? 'Your Personal Life Advantage program — ' + current.path + ' · ' + current.training + ' — will have its own Stripe checkout when payments are connected.' : 'Your program will use Stripe for secure payment when checkout is connected.';
+  $('#welcome-program-message').textContent = personal ? 'Your Personal Life Advantage starts here.' : 'You’re on your way to building your Unfair Advantage.';
+  $('#welcome-program-context').textContent = [current.path || current.goal, current.training, current.priorities].filter(Boolean).join(' · ');
   document.querySelectorAll('[data-checkout-goal]').forEach(node => { node.textContent = current.goal; });
   document.querySelectorAll('[data-checkout-level]').forEach(node => { node.textContent = current.training; });
   const capabilities = $('#checkout-capabilities');
@@ -205,8 +245,8 @@ function showPreview(kind) {
   if (kind === 'email') {
     $('#preview-dialog-title').textContent = 'Welcome to Thrive';
     paragraph(body, 'To: ' + (demo.account?.email || 'your@email.com'), 'email-meta');
-    paragraph(body, 'Hi ' + (demo.account?.firstName || 'there') + ', your Unfair Advantage journey starts here.');
-    paragraph(body, 'Your program: ' + summary(state).goal + ' · ' + summary(state).training + '. Your selected capabilities: ' + summary(state).priorities + '.');
+    paragraph(body, 'Hi ' + (demo.account?.firstName || 'there') + ', your ' + (state.goal === 'personal' ? 'Personal Life Advantage' : 'Unfair Advantage') + ' journey starts here.');
+    paragraph(body, 'Your program: ' + summary(state).goal + (summary(state).path ? ' · ' + summary(state).path : '') + ' · ' + summary(state).training + '. Your selected capabilities: ' + summary(state).priorities + '.');
     const steps = document.createElement('ol');
     [
       ['Access your training dashboard', 'Sign in with the email you used to create your Thrive account. Your access link and sign-in instructions will be included here.'],

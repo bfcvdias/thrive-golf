@@ -1,5 +1,19 @@
 # Verification
 
+## Personal Life Advantage — version 3.2.0 preview
+
+Checked October 23–24, 2026. Preview: https://thrive-golf-website--personal-life-jdzp8dvy.web.app/?v=3.2.0#/personal. Final Hosting version `12719cbc65ffef07`; not promoted to live.
+
+- Added seven screens: recognition, benefits, path choice, and four audience pages. Reused priorities, training, summary, account, payment, and welcome with Personal Life context.
+- `npm run check` passed: 22 screens, assets, route links, sanitized state, all four Personal paths at both levels, distinct offer keys, payment gates, decline/cancel/retry, and invalidation after path/goal/priority/level changes.
+- Desktop recognition, benefits, path chooser, professional/traveler composition, training choice, and welcome reviewed. Mobile audience pages, summary, account, payment, and welcome reviewed. Corrected missing spaces around hidden mobile heading line breaks.
+- All seven new pages checked at 320 CSS-pixel width: loaded images and no horizontal overflow. Also checked at 390 pixels; builder/account/payment/welcome passed narrow-layout checks. Viewport emulation is not a physical-phone test.
+- All four audience links carry their path into the summary and Back returns to the correct audience page. Everyday Life / Independent and Student / Pro reached successful checkout in the browser.
+- Declined/cancelled payments remain on checkout; retry success opens the Personal Life welcome screen. The email preview names the path/level. Dashboard, booking, and start-training buttons open their future-feature dialogs.
+- Changing from a completed Student program to Professionals blocks reuse of payment completion. Refresh resets demo account/payment while keeping selected program choices.
+- Golf account → payment → welcome still uses Golf labels and the approved golf photograph without Personal Life styling. No browser warnings/errors observed in the tested flow.
+- Screenshots are local under ignored `artifacts/personal-preview/`. Imagery/prompts are documented separately. Real accounts, payments, delivery, booking, and training are not connected or tested.
+
 ## Approved crouching golfer replacement — version 3.1.2
 
 Checked 2026-10-22.
